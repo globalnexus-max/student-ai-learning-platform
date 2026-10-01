@@ -1,19 +1,15 @@
 import Link from 'next/link';
+import { getAdminAnalytics } from '@/lib/admin-analytics';
 
-const studentRows = [
-  { name: 'Nargiz A.', progress: '78%', status: 'On track', lastActive: '2h ago' },
-  { name: 'Samir M.', progress: '64%', status: 'Needs review', lastActive: '5h ago' },
-  { name: 'Leyla R.', progress: '90%', status: 'Excellent', lastActive: '1d ago' },
-  { name: 'Ramin K.', progress: '52%', status: 'Needs support', lastActive: '3h ago' },
-];
+export default async function AdminPage() {
+  const data = await getAdminAnalytics();
 
-export default function AdminPage() {
   return (
     <main className="admin-shell">
       <header className="page-header">
         <div>
           <h1>Admin overview</h1>
-          <p>Manage student activity, class health, and AI-guided recommendations.</p>
+          <p>Monitor learner health, engagement, and AI-guided interventions.</p>
         </div>
         <Link href="/dashboard" className="inline-link">Back to dashboard</Link>
       </header>
@@ -25,18 +21,20 @@ export default function AdminPage() {
             <thead>
               <tr>
                 <th>Student</th>
+                <th>Course</th>
                 <th>Progress</th>
                 <th>Status</th>
-                <th>Last active</th>
+                <th>Risk</th>
               </tr>
             </thead>
             <tbody>
-              {studentRows.map((row) => (
-                <tr key={row.name}>
-                  <td>{row.name}</td>
-                  <td>{row.progress}</td>
-                  <td>{row.status}</td>
-                  <td>{row.lastActive}</td>
+              {data.map((student) => (
+                <tr key={student.student}>
+                  <td>{student.student}</td>
+                  <td>{student.course}</td>
+                  <td>{student.completion}%</td>
+                  <td>{student.status}</td>
+                  <td>{student.riskScore}</td>
                 </tr>
               ))}
             </tbody>
@@ -46,9 +44,11 @@ export default function AdminPage() {
         <div className="list-card">
           <h3>AI admin notes</h3>
           <ul className="side-list">
-            <li>3 students need additional support before the next checkpoint.</li>
-            <li>Product design cohort is outperforming average engagement.</li>
-            <li>AI recommendation quality improved 18% in the past week.</li>
+            {data.map((student) => (
+              <li key={`${student.student}-summary`}>
+                <strong>{student.student}</strong>: {student.aiSummary}
+              </li>
+            ))}
           </ul>
         </div>
       </section>
