@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { courses } from '@/lib/mock-data';
 
-export default function CoursesPage() {
+export default function CourseCatalogPage() {
   return (
     <main className="courses-shell">
       <header className="page-header">
         <div>
-          <h1>Courses</h1>
-          <p>Curated learning tracks adapted to your own pace and goals.</p>
+          <h1>Available courses</h1>
+          <p>Auto-enrollment flow for learners based on current goals and performance.</p>
         </div>
         <Link href="/dashboard" className="inline-link">Back to dashboard</Link>
       </header>
@@ -26,12 +26,22 @@ export default function CoursesPage() {
                 <span key={tag} className="tag">{tag}</span>
               ))}
             </div>
-            <div className="progress-bar">
-              <span style={{ width: `${course.progress}%` }} />
-            </div>
             <div className="course-actions">
               <strong>{course.progress}% complete</strong>
-              <Link href={`/courses/${course.id}`} className="card-button">Open</Link>
+              <button
+                type="button"
+                className="card-button"
+                onClick={async () => {
+                  await fetch('/api/enroll', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: 'u-student-1', courseId: course.id }),
+                  });
+                  window.location.href = '/dashboard';
+                }}
+              >
+                Enroll
+              </button>
             </div>
           </article>
         ))}
