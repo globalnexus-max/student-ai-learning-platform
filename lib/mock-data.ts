@@ -1,3 +1,29 @@
+export const dashboardStats = [
+  { label: 'Current streak', value: '12 days' },
+  { label: 'Courses completed', value: '3/8' },
+  { label: 'Average quiz score', value: '89%' },
+  { label: 'AI tutor sessions', value: '19' },
+];
+
+export const studyPlan = [
+  'Review visual hierarchy notes from Module 2',
+  'Practice 3 quick design critiques using the rubric',
+  'Submit AI reflection journal before Friday',
+  'Complete the product research checkpoint',
+  'Schedule a 15-minute review with the AI tutor',
+];
+
+export const learningInsights = [
+  {
+    title: 'Strengths',
+    items: ['Good consistency in weekly activity', 'Strong understanding of product goals', 'Strong reflection quality in submissions'],
+  },
+  {
+    title: 'Focus areas',
+    items: ['Improve data interpretation speed', 'Add more design rationale in final submissions', 'Increase time spent on problem-framing exercises'],
+  },
+];
+
 export const courses = [
   {
     id: 'ui-design-fundamentals',
@@ -34,31 +60,6 @@ export const courses = [
     description: 'Interpret dashboards, spot trends, and convert raw data into actionable insights.',
     progress: 35,
     tags: ['Data', 'Analytics'],
-  },
-];
-
-export const dashboardStats = [
-  { label: 'Current streak', value: '12 days' },
-  { label: 'Courses completed', value: '3/8' },
-  { label: 'Average quiz score', value: '89%' },
-  { label: 'AI tutor sessions', value: '19' },
-];
-
-export const studyPlan = [
-  'Review visual hierarchy notes from Module 2',
-  'Practice 3 quick design critiques using the rubric',
-  'Submit AI reflection journal before Friday',
-  'Complete the product research checkpoint',
-];
-
-export const learningInsights = [
-  {
-    title: 'Strengths',
-    items: ['Good consistency in weekly activity', 'Strong understanding of product goals'],
-  },
-  {
-    title: 'Focus areas',
-    items: ['Improve data interpretation speed', 'Add more design rationale in final submissions'],
   },
 ];
 
