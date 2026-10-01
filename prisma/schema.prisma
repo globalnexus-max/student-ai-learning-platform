@@ -13,6 +13,12 @@ enum Role {
   ADMIN
 }
 
+enum EnrollmentStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+}
+
 enum SubmissionStatus {
   DRAFT
   SUBMITTED
@@ -27,21 +33,35 @@ model User {
   role        Role         @default(STUDENT)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+  enrollments Enrollment[]
   progress    Progress[]
   submissions Submission[]
   sessions    TutorSession[]
 }
 
 model Course {
-  id          String    @id @default(cuid())
+  id          String       @id @default(cuid())
   title       String
   description String?
   level       String
   duration    String
   tags        String[]
   lessons     Lesson[]
+  enrollments Enrollment[]
   progress    Progress[]
-  createdAt   DateTime  @default(now())
+  createdAt   DateTime     @default(now())
+}
+
+model Enrollment {
+  id         String            @id @default(cuid())
+  userId     String
+  courseId   String
+  status     EnrollmentStatus  @default(ACTIVE)
+  enrolledAt DateTime          @default(now())
+  user       User              @relation(fields: [userId], references: [id])
+  course     Course            @relation(fields: [courseId], references: [id])
+
+  @@unique([userId, courseId])
 }
 
 model Lesson {
