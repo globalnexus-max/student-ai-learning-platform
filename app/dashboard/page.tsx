@@ -1,63 +1,56 @@
 import Link from 'next/link';
+import { getDashboardData } from '@/lib/dashboard-data';
 
-const features = [
-  'AI tutor guidance',
-  'Adaptive study paths',
-  'Progress dashboards',
-  'Assignments and quizzes',
-  'Teacher and admin control',
-];
+export default async function DashboardPage() {
+  const { metrics, studyPlan, insights } = await getDashboardData();
 
-export default function HomePage() {
   return (
-    <main className="page-shell">
-      <header className="topbar">
-        <div className="brand">LearnFlow AI</div>
-        <nav className="nav">
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/courses">Courses</Link>
-          <Link href="/admin">Admin</Link>
-          <Link href="/login">Login</Link>
-        </nav>
+    <main className="dashboard-shell">
+      <header className="page-header">
+        <div>
+          <h1>Student dashboard</h1>
+          <p>Welcome back, Nargiz. Your learning plan is updating in real time.</p>
+        </div>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          <Link href="/courses" className="inline-link">View all courses</Link>
+          <Link href="/login" className="inline-link">Logout demo</Link>
+        </div>
       </header>
 
-      <section className="hero">
-        <div className="hero-copy">
-          <span className="eyebrow">Adaptive learning platform</span>
-          <h1>Turn student learning into a guided, intelligent journey.</h1>
-          <p>
-            A complete learning system for students, teachers, and administrators built
-            around AI feedback, progress tracking, and personalized study planning.
-          </p>
-          <div className="cta-row">
-            <Link href="/login" className="primary-btn">Login to start</Link>
-            <Link href="/courses" className="secondary-btn">Browse courses</Link>
-          </div>
-        </div>
-
-        <div className="hero-card">
-          <div className="mini-stat">
-            <span>Completion</span>
-            <strong>78%</strong>
-          </div>
-          <div className="mini-stat">
-            <span>AI coaching</span>
-            <strong>Live</strong>
-          </div>
-          <div className="mini-stat">
-            <span>Next task</span>
-            <strong>Data checkpoint</strong>
-          </div>
-        </div>
-      </section>
-
-      <section className="feature-grid">
-        {features.map((feature) => (
-          <div key={feature} className="feature-card">
-            <span className="dot" />
-            <p>{feature}</p>
+      <section className="metrics-grid">
+        {metrics.map((stat) => (
+          <div key={stat.label} className="metric-card">
+            <span>{stat.label}</span>
+            <strong>{stat.value}</strong>
           </div>
         ))}
+      </section>
+
+      <section className="content-grid">
+        <div className="panel">
+          <h3>Recommended next steps</h3>
+          <ul className="task-list">
+            {studyPlan.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="list-card">
+          <h3>AI learning insights</h3>
+          <ul className="insight-list">
+            {insights.map((group) => (
+              <li key={group.title}>
+                <strong>{group.title}</strong>
+                <div>
+                  {group.items.map((item) => (
+                    <div key={item}>{item}</div>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </main>
   );
