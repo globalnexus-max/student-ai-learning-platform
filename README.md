@@ -1,79 +1,46 @@
 # Student AI Learning Platform
 
-A modern adaptive learning platform for students, teachers, and administrators. The app helps learners improve through AI-guided recommendations, progress analytics, and personalized study paths.
+A modern adaptive learning platform for students, teachers, and administrators. The platform helps learners keep momentum through AI-guided recommendations, personalized curricula, analytics, and task planning.
 
-## Project goals
+## Features
 
-- Personalized learning journeys for each student
-- AI tutor that explains concepts and recommends the next task
-- Course dashboard with progress and engagement metrics
-- Teacher/admin visibility into student status and support requirements
-- Production-ready architecture using modern web technologies
+- Student dashboard with progress tracking
+- Adaptive tutor guidance
+- Course catalog and course detail pages
+- Teacher/admin analytics view
+- Session-based auth foundation
+- Prisma-ready data model for production expansion
 
 ## Stack
 
-- Frontend: Next.js 14
-- Backend: Next.js API routes + FastAPI-ready structure
-- Database: PostgreSQL + Prisma
-- Authentication: NextAuth / Clerk-ready
-- AI: OpenAI API
-- Hosting: Vercel + Render / Railway
+- Next.js 14
+- Prisma + PostgreSQL
+- OpenAI API
+- TypeScript
+- Vercel / Render deployment ready
 
-## Current phase
-
-This repo contains the MVP foundation and the next phase introduces:
-
-1. Authentication and user roles
-2. PostgreSQL schema and Prisma models
-3. AI tutor endpoint and adaptive recommendation engine
-4. Progress tracking and assessment loops
-5. Admin analytics dashboard
-6. Deployment and production hardening
-
-## Local development
+## Setup
 
 1. Copy `.env.example` to `.env.local`
 2. Install dependencies:
    npm install
 3. Generate Prisma client:
    npx prisma generate
-4. Run the app:
+4. Run development server:
    npm run dev
 
-## Key routes
+## Main routes
 
-- `/` landing page
-- `/dashboard` student dashboard
-- `/courses` catalog
-- `/courses/[id]` course detail
-- `/admin` admin overview
-- `/api/ai` sample AI endpoint
-- `/api/tutor` adaptive tutor endpoint
-- `/api/progress` progress update logic
+- `/`
+- `/dashboard`
+- `/courses`
+- `/courses/[id]`
+- `/admin`
+- `/api/auth`
+- `/api/tutor`
+- `/api/progress`
+- `/api/analytics`
 
-## Roadmap
+## Production notes
 
-### Phase 1: Foundation
-- App shell and landing page
-- Dashboard, courses, admin views
-- Mock data and UI polish
-
-### Phase 2: Learning engine
-- Student profiles
-- Course enrollment
-- Assignment and quiz data
-- Progress tracking
-
-### Phase 3: AI coaching
-- OpenAI-powered tutoring
-- Personalized study plans
-- Weak-topic analysis and recommendations
-
-### Phase 4: Operations
-- Notifications and reports
-- Teacher/admin workflows
-- Deployment and testing
-
-## Notes
-
-This project is intentionally structured so it can evolve from an MVP demo into a production-grade learning system without a major rewrite.
+This repository is intended as a foundation for a student learning platform that can evolve into a real, data-driven product with automated course personalization, AI recommendations, and admin oversight.
