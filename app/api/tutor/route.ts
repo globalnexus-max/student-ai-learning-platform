@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateAdaptiveRecommendation } from '@/lib/ai';
+import { generateAdaptiveRecommendation } from '@/lib/tutor-data';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+
     const result = await generateAdaptiveRecommendation({
       name: body.name || 'Student',
       topic: body.topic || 'learning workflow',
