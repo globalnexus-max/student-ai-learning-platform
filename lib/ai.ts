@@ -1,47 +1,47 @@
-type StudentProfile = {
+export type RecommendationProfile = {
   name?: string;
   topic?: string;
   strengths?: string[];
   weaknesses?: string[];
 };
 
-const buildFallbackPlan = ({ name, topic, strengths, weaknesses }: StudentProfile) => {
-  const resolvedTopic = topic || 'learning strategy';
-  const resolvedStrengths = strengths?.length ? strengths : ['consistency'];
-  const resolvedWeaknesses = weaknesses?.length ? weaknesses : ['focus'];
+const fallback = (profile: RecommendationProfile) => {
+  const topic = profile.topic || 'learning workflow';
+  const strengths = profile.strengths && profile.strengths.length ? profile.strengths : ['consistency'];
+  const weaknesses = profile.weaknesses && profile.weaknesses.length ? profile.weaknesses : ['focus'];
 
   return {
-    recommendation: `${name || 'Student'} should prioritize ${resolvedWeaknesses[0]} and build on ${resolvedStrengths[0]} while practicing ${resolvedTopic}.`,
+    recommendation: `${profile.name || 'Student'} should prioritize ${weaknesses[0]} while reinforcing ${strengths[0]} in ${topic}.`,
     actionPlan: [
-      `Review the fundamentals of ${resolvedTopic} for 20 minutes.`,
-      `Complete one applied exercise that uses ${resolvedStrengths[0]}.`,
-      `Write a short reflection and ask the tutor to generate the next challenge.`,
+      `Review the essentials of ${topic} for 20 minutes.`,
+      `Complete one hands-on practice using your strongest skill: ${strengths[0]}.`,
+      `Reflect on your result and re-run the task with a stronger focus on ${weaknesses[0]}.`,
     ],
     generatedLesson: {
-      title: `Adaptive lesson: ${resolvedTopic}`,
-      summary: `This lesson strengthens ${resolvedWeaknesses[0]} while reinforcing ${resolvedStrengths[0]}.`,
+      title: `Adaptive lesson: ${topic}`,
+      summary: `This lesson uses your strengths in ${strengths[0]} to improve ${weaknesses[0]}.`,
     },
   };
 };
 
-export async function generateAdaptiveRecommendation(profile: StudentProfile) {
+export async function generateAdaptiveRecommendation(profile: RecommendationProfile) {
   const apiKey = process.env.OPENAI_API_KEY;
 
   if (!apiKey) {
-    return buildFallbackPlan(profile);
+    return fallback(profile);
   }
 
   try {
     const { default: OpenAI } = await import('openai');
     const client = new OpenAI({ apiKey });
 
-    const response = await client.chat.completions.create({
+    const completion = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         {
           role: 'system',
           content:
-            'You are an adaptive learning coach. Suggest a short study plan, prioritize weak areas, and reinforce strengths.',
+            'You are an adaptive educational coach. Give a concise recommendation and a 3-step action plan based on strengths and weak areas.',
         },
         {
           role: 'user',
@@ -51,26 +51,26 @@ export async function generateAdaptiveRecommendation(profile: StudentProfile) {
       temperature: 0.7,
     });
 
-    const content = response.choices[0]?.message?.content;
+    const content = completion.choices[0]?.message?.content;
 
     if (!content) {
-      return buildFallbackPlan(profile);
+      return fallback(profile);
     }
 
     return {
       recommendation: content.trim(),
       actionPlan: [
-        'Review the fundamentals of the target topic',
-        'Apply one practical exercise',
-        'Check your understanding by explaining it aloud',
+        'Review the concept in short form',
+        'Apply one practice task using your strongest skill',
+        'Summarize what you learned and ask for the next challenge',
       ],
       generatedLesson: {
-        title: 'AI-generated lesson',
-        summary: 'Personalized study guidance generated for the current learning state.',
+        title: 'AI-generated adaptive lesson',
+        summary: 'Personalized lesson based on current understanding and learning gaps.',
       },
     };
   } catch (error) {
-    console.error('OpenAI generation failed:', error);
-    return buildFallbackPlan(profile);
+    console.error('AI generation failed', error);
+    return fallback(profile);
   }
 }
