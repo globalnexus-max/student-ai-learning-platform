@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum SubmissionStatus {
+  DRAFT
+  SUBMITTED
+  GRADED
+  LATE
+}
+
+model User {
+  id            String      @id @default(cuid())
+  email         String      @unique
+  name          String?
+  role          Role        @default(STUDENT)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  progress      Progress[]
+  submissions   Submission[]
+  sessions      TutorSession[]
+}
+
+model Course {
+  id          String      @id @default(cuid())
+  title       String
+  description String?
+  level       String
+  duration    String
+  tags        String[]
+  lessons     Lesson[]
+  progress    Progress[]
+  createdAt   DateTime    @default(now())
+}
+
+model Lesson {
+  id          String    @id @default(cuid())
+  title       String
+  content     String
+  order       Int
+  courseId    String
+  course      Course    @relation(fields: [courseId], references: [id])
+  createdAt   DateTime  @default(now())
+}
+
+model Quiz {
+  id          String         @id @default(cuid())
+  title       String
+  courseId    String?
+  questions   Json
+  createdAt   DateTime       @default(now())
+}
+
+model Submission {
+  id          String            @id @default(cuid())
+  userId      String
+  user        User              @relation(fields: [userId], references: [id])
+  lessonId    String?
+  title       String
+  content     String?
+  status      SubmissionStatus @default(DRAFT)
+  grade       Int?
+  createdAt   DateTime          @default(now())
+}
+
+model Progress {
+  id          String   @id @default(cuid())
+  userId      String
+  courseId    String
+  percent     Int      @default(0)
+  streak      Int      @default(0)
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+  course      Course   @relation(fields: [courseId], references: [id])
+
+  @@unique([userId, courseId])
+}
+
+model TutorSession {
+  id          String   @id @default(cuid())
+  userId      String
+  topic       String
+  summary     String
+  strengths   String[]
+  weaknesses  String[]
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}
