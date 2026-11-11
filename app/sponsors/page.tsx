@@ -35,9 +35,11 @@ export default function SponsorsPage() {
 
         <article className="sponsor-card">
           <span className="sponsor-label">Accreditation update</span>
-          <h2>In the accreditation process</h2>
+          <h2>Discussions with Cognia are ongoing</h2>
           <p>
-            The school is currently in the accreditation process. Updates will be shared as the process progresses.
+            We are currently in discussions with Cognia, a leading accreditation and school improvement
+            organization. The accreditation process is ongoing, and accreditation has not yet been awarded.
+            Interested parties are welcome to contact us to learn more.
           </p>
         </article>
 
