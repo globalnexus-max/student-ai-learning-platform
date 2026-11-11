@@ -37,9 +37,9 @@ export default function SponsorsPage() {
           <span className="sponsor-label">Accreditation update</span>
           <h2>Discussions with Cognia are ongoing</h2>
           <p>
-            We are currently in discussions with Cognia, a leading accreditation and school improvement
-            organization. The accreditation process is ongoing, and accreditation has not yet been awarded.
-            Interested parties are welcome to contact us to learn more.
+            We have held discussions with Cognia, a leading accreditation and school improvement
+            organization. The next steps discussed include completing tax registration and securing a
+            leased school facility and office. Accreditation has not yet been awarded.
           </p>
         </article>
 
@@ -57,18 +57,19 @@ export default function SponsorsPage() {
       <section className="sponsor-support">
         <div>
           <span className="sponsor-label">Partner with us</span>
-          <h2>Support our school project</h2>
+          <h2>Support the steps needed to move forward</h2>
           <p>
-            Interested in supporting our school project? Contact us to learn more about the project and
-            discuss sponsorship opportunities. Bank details will be provided directly upon contact.
+            Financial support is needed for tax registration, leasing a school facility and office, and
+            developing the academic programs. These startup steps will help the project advance toward
+            the formal accreditation process and the launch of a hybrid high school for Grades 9–12.
           </p>
           <p>
-            The project is in the planning stage. The purpose and use of any support will be discussed
-            with and agreed upon by the sponsor in advance.
+            Interested in supporting our school project? Contact us to learn more and discuss sponsorship
+            opportunities. Bank details will be provided directly upon contact, and the purpose and use of
+            any support will be discussed with the sponsor in advance.
           </p>
           <p className="sponsor-note">
-            This page describes a proposed school project. It is not a representation that the school is
-            currently operating, accredited, or authorized to award diplomas.
+            The school has not yet been accredited or authorized to award diplomas.
           </p>
         </div>
         <Link href="/" className="secondary-btn">Back to GradeFlow AI</Link>
