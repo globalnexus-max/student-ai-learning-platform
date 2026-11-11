@@ -64,9 +64,9 @@ export default function SponsorsPage() {
             the formal accreditation process and the launch of a hybrid high school for Grades 9–12.
           </p>
           <p>
-            Interested in supporting our school project? Contact us to learn more and discuss sponsorship
-            opportunities. Bank details will be provided directly upon contact, and the purpose and use of
-            any support will be discussed with the sponsor in advance.
+            Interested in supporting our school project? Please contact us to discuss sponsorship
+            opportunities. Bank details will be provided directly upon contact, and the purpose and use
+            of any support will be discussed with the sponsor in advance.
           </p>
           <p className="sponsor-note">
             The school has not yet been accredited or authorized to award diplomas.
