@@ -57,11 +57,14 @@ export default function SponsorsPage() {
       <section className="sponsor-support">
         <div>
           <span className="sponsor-label">Partner with us</span>
-          <h2>Support the next stage of the project</h2>
+          <h2>Support our school project</h2>
           <p>
-            Sponsorship can help advance planning, curriculum development, student-support services, and
-            the work required to prepare for launch. We welcome conversations with individuals and
-            organizations interested in supporting accessible, high-quality education.
+            Interested in supporting our school project? Contact us to learn more about the project and
+            discuss sponsorship opportunities. Bank details will be provided directly upon contact.
+          </p>
+          <p>
+            The project is in the planning stage. The purpose and use of any support will be discussed
+            with and agreed upon by the sponsor in advance.
           </p>
           <p className="sponsor-note">
             This page describes a proposed school project. It is not a representation that the school is
