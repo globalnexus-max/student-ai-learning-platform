@@ -17,6 +17,7 @@ export default function HomePage() {
           <Link href="/dashboard">Dashboard</Link>
           <Link href="/courses">Curriculum</Link>
           <Link href="/resources">Resources</Link>
+          <Link href="/sponsors">Sponsors</Link>
         </nav>
       </header>
 
@@ -57,6 +58,15 @@ export default function HomePage() {
             <p>{feature}</p>
           </div>
         ))}
+      </section>
+
+      <section className="home-sponsor-callout">
+        <div>
+          <span className="sponsor-label">School project</span>
+          <h2>Building a hybrid high school for Grades 9–12</h2>
+          <p>Learn about the vision, sponsorship opportunities, and current accreditation status.</p>
+        </div>
+        <Link href="/sponsors" className="secondary-btn">Explore the project</Link>
       </section>
     </main>
   );
