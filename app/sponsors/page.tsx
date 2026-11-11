@@ -35,11 +35,9 @@ export default function SponsorsPage() {
 
         <article className="sponsor-card">
           <span className="sponsor-label">Accreditation update</span>
-          <h2>Discussions held; next steps pending</h2>
+          <h2>In the accreditation process</h2>
           <p>
-            Preliminary discussions regarding accreditation have taken place. The project is awaiting
-            further guidance and next steps in the accreditation candidacy process. No accreditation has
-            been awarded at this time.
+            The school is currently in the accreditation process. Updates will be shared as the process progresses.
           </p>
         </article>
 
