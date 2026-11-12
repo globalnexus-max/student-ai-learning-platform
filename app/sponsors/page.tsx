@@ -68,6 +68,9 @@ export default function SponsorsPage() {
             opportunities. Bank details will be provided directly upon contact, and the purpose and use
             of any support will be discussed with the sponsor in advance.
           </p>
+          <p>
+            Email: <a href="mailto:yurdkredit@gmail.com">yurdkredit@gmail.com</a>
+          </p>
           <p className="sponsor-note">
             The school has not yet been accredited or authorized to award diplomas.
           </p>
